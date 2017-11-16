@@ -1,0 +1,5 @@
+---
+# defaults file for tranquility
+tranquility_server_config_path: tranquility/server.json.j2
+tranquility_http_port: 8200
+tranquility_http_threads: 8

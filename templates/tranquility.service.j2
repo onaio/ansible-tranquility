@@ -1,0 +1,11 @@
+[Unit]
+Description=tranquility_service
+After=network.target
+
+[Service]
+User={{ tranq_user }}
+ExecStart=/opt/druid-tranquility/tranquility-distribution-{{ tranq_version }}/bin/tranquility server -configFile /opt/druid-tranquility/tranquility-distribution-{{ tranq_version }}/conf/server.json
+Restart=always
+
+[Install]
+WantedBy=default.target

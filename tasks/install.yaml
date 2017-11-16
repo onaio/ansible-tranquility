@@ -1,0 +1,25 @@
+---
+# file: install.yaml
+- name: Create tranquility user
+  user:
+    name: "{{ tranq_user }}"
+
+- name: Create directory for tranquility
+  file: path=/opt/druid-tranquility/ state=directory mode=0777
+        owner={{ tranq_user }}
+  become: yes
+
+- name: Download tranquility
+  get_url: url=http://static.druid.io/tranquility/releases/tranquility-distribution-{{ tranq_version }}.tgz
+           dest=/opt/druid-tranquility
+           checksum=sha256:{{ tranq_checksum }}
+           mode=0777
+  become: yes
+
+- name: Un-tar tranquility download
+  unarchive: src=/opt/druid-tranquility/tranquility-distribution-{{ tranq_version }}.tgz dest=/opt/druid-tranquility/ copy=no
+  become: yes
+
+- name: Change ownership of download path
+  file: path=/opt/druid-tranquility owner={{ tranq_user }} recurse=yes mode=0777
+  become: yes 

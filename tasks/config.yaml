@@ -1,0 +1,19 @@
+---
+# file: deploy.yaml - run to deploy tranquility
+# Tranquility configuration
+- name: Copy server.json for tranquility node
+  template: src={{ tranquility_server_config_path }} dest=/opt/druid-tranquility/tranquility-distribution-{{ tranq_version }}/conf/server.json
+        owner={{ tranq_user }} mode=0755
+  become: yes
+
+- name: Copy over systemd file for tranquility role {{ tag_name }}
+  template: src=tranquility.service.j2 dest=/lib/systemd/system/tranquility.service
+  become: true
+
+- name: Start tranquility systemd service
+  systemd:
+    name: tranquility
+    state: restarted
+    daemon_reload: yes
+    enabled: yes
+  become: true
