@@ -1,5 +1,5 @@
 ---
-# file: install.yaml
+# file: install.yml
 - name: Create tranquility user
   user:
     name: "{{ tranq_user }}"

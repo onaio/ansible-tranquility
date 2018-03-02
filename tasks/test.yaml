@@ -1,5 +1,5 @@
 ---
-# file: test.yaml
+# file: test.yml
 - name: Test that our port is allocated
   wait_for: host={{ ansible_ec2_public_ipv4|default(ansible_default_ipv4.address) }} port=8200
             connect_timeout=10 state=started

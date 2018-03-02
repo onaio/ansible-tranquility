@@ -1,5 +1,5 @@
 ---
-# file: deploy.yaml - run to deploy tranquility
+# file: deploy.yml - run to deploy tranquility
 # Tranquility configuration
 - name: Copy server.json for tranquility node
   template: src={{ tranquility_server_config_path }} dest=/opt/druid-tranquility/tranquility-distribution-{{ tranq_version }}/conf/server.json
